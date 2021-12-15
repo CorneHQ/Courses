@@ -77,18 +77,21 @@ namespace Exercise
         // Implements concurrent version of MergeSort.
         public virtual void sortCon(int[] d)
         {
-            // Todo 1: Instantiate an object of mergeSort.
+            SequentialMergeSort sort = new SequentialMergeSort(d);
 
-            // Todo 2: Divide the main array into two pieces: left and right. Where is the middle?
+            int arrayMidPosition = d.Length / 2;
 
-            // Todo 3: Give the tasks. Each thread sorts one piece independent from the other.
+            Thread leftSideT = new Thread(() => sort.sortSeq(0, arrayMidPosition));
+            Thread rightSideT = new Thread(() => sort.sortSeq(arrayMidPosition+1, d.Length-1));
 
-            // Todo 4: Start the threads.
+            leftSideT.Start();
+            rightSideT.Start();
 
-            // Todo 5: Join to the working threads.
+            leftSideT.Join();
+            rightSideT.Join();
 
-            // Todo 6: Merge the results to create the complete sorted array. Then print the content
+            sort.merge(0, arrayMidPosition, d.Length-1);
+            sort.printContent("Concurrent sort results");
         }
-
     }
 }

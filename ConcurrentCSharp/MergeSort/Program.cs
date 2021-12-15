@@ -20,9 +20,9 @@ namespace Program
             mergeSort.printContent("\n After the sequential merge-sort \n");
 
             // uncomment this only if the solution is available
-            //Console.WriteLine("\n Now concurrent sort will be running ...\n");
-            //SolutionConcurrentMergeSort concMergeSort = new SolutionConcurrentMergeSort();
-            //concMergeSort.sortCon(arr);
+            Console.WriteLine("\n Now concurrent sort will be running ...\n");
+            ConcurrentMergeSort concMergeSort = new ConcurrentMergeSort();
+            concMergeSort.sortCon(arr);
 
         }
     }
