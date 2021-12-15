@@ -18,7 +18,18 @@ namespace Concurrent
         /// <param name="nt"> is the number of threads. For simplicity assume two.</param>
         public void runConcurrent(int m, int M)
         {
-            // Todo 1: Create two threads, define their segments and start them. Join them all to have all the work done.
+            int halfNumbers = M / 2;
+
+            Thread t1 = new Thread(() => this.runSequential(m, halfNumbers));
+            Thread t2 = new Thread(() => this.runSequential(halfNumbers+1, M));
+
+            t1.Start();
+            t2.Start();
+
+            Thread.Sleep(2000);
+
+            t1.Join();
+            t2.Join();
         }
 
     }
